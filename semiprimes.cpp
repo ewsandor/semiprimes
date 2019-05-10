@@ -3,7 +3,6 @@
 #include <iostream>
 #include <fstream>
 
-
 using namespace std;
 
 int * populatePrimes(int count){
@@ -30,7 +29,7 @@ int * populatePrimes(int count){
       primeString = primeString.substr(1);
     }
     int loc = primeString.find(' ');
-    primes[i] = Uhuge::parseInt(primeString.substr(0, loc));
+//    primes[i] = Uhuge::parseInt(primeString.substr(0, loc));
     primeString = primeString.substr(loc);
     //cout << i + 1 << ": " << primes[i] << endl; //value
     cout << '#' << flush;
