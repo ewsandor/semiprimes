@@ -7,12 +7,13 @@ SHELL = /bin/sh
 CXX?=g++
 CXXFLAGS?=-Wall -g
 
-objects=semiprimes.o uhuge.o
+objects=primes.o semiprimes.o uhuge.o 
 
 all: $(objects)
 	$(CXX) $(ALL_CXXFLAGS) -o semiprimes $(objects)
 
-semiprimes.o: uhuge.hpp
+primes.o: primes.hpp
+semiprimes.o: primes.hpp uhuge.hpp
 uhuge.o: uhuge.hpp
 
 clean:
