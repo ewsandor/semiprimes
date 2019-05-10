@@ -1,14 +1,19 @@
-CC=g++
-CFLAGS=
-DEPS=uhuge.hpp
-OBJ=uhuge.o semiprimes.o
+SHELL = /bin/sh
 
-%.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+.SUFFIXES:
+.SUFFIXES: .o .cpp .hpp
+.PHONY: all clean
 
-semiprimes: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+CXX?=g++
+CXXFLAGS?=-Wall -g
 
-clean: $(OBJ)
-	rm $^
-	rm semiprimes
+objects=semiprimes.o uhuge.o
+
+all: $(objects)
+	$(CXX) $(ALL_CXXFLAGS) -o semiprimes $(objects)
+
+semiprimes.o: uhuge.hpp
+uhuge.o: uhuge.hpp
+
+clean:
+	-rm semiprimes $(objects)
