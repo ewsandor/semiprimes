@@ -7,9 +7,15 @@
 class Uhuge{
 
   private:
+    #define CHUNKBITS  64
     #define CHUNKCOUNT 12
+    #define CHUNK_L(chunk) (chunk & 0xffffFFFF)
+    #define CHUNK_H(chunk) (chunk >> (CHUNKBITS/2))
+    #define CHUNK_L_TO_H(chunk) (chunk << (CHUNKBITS/2))
+    
     uint64_t chunks[CHUNKCOUNT];
     void     setZero();
+    uint64_t numberOfBits();
 
   public:
     Uhuge();
@@ -18,7 +24,9 @@ class Uhuge{
     Uhuge(std::string str); 
 
     std::string toString();
+    std::string toHexString();
     void        print();
+    void        printHex();
 
     Uhuge       add(Uhuge * rhs);
     Uhuge       add(uint64_t rhs);
@@ -28,9 +36,13 @@ class Uhuge{
     Uhuge       multiply(uint64_t rhs);
     Uhuge       divide(Uhuge * rhs);
     Uhuge       divide(uint64_t rhs);
+    Uhuge       divide2();
 
     Uhuge       mod(Uhuge * rhs);
     Uhuge       mod(uint64_t rhs);
+
+    Uhuge       leftShift(uint64_t positions);
+    Uhuge       rightShift(uint64_t positions);
 
     bool        equals(Uhuge * obj);
     bool        equals(uint64_t obj);
